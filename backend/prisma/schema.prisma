@@ -1,0 +1,107 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  PROFESSOR
+  STUDENT
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(STUDENT)
+  bio       String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  blogs     Blog[]
+  forums    Forum[]
+  comments  Comment[]
+  likes     Like[]
+
+  @@index([email])
+}
+
+model Blog {
+  id        String   @id @default(uuid())
+  title     String
+  slug      String   @unique
+  content   String
+  authorId  String
+  published Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  author   User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  comments Comment[]
+  likes    Like[]
+
+  @@index([slug])
+  @@index([authorId])
+  @@index([published])
+  @@index([createdAt(sort: Desc)])
+}
+
+model Forum {
+  id        String   @id @default(uuid())
+  title     String
+  content   String
+  authorId  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  author   User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  comments Comment[]
+  likes    Like[]
+
+  @@index([authorId])
+  @@index([createdAt(sort: Desc)])
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  content   String
+  userId    String
+  blogId    String?
+  forumId   String?
+  parentId  String?
+  createdAt DateTime @default(now())
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  blog     Blog?    @relation(fields: [blogId], references: [id], onDelete: Cascade)
+  forum    Forum?   @relation(fields: [forumId], references: [id], onDelete: Cascade)
+  parent   Comment? @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies  Comment[] @relation("CommentReplies")
+
+  @@index([userId])
+  @@index([blogId])
+  @@index([forumId])
+  @@index([parentId])
+}
+
+model Like {
+  id       String   @id @default(uuid())
+  userId   String
+  blogId   String?
+  forumId  String?
+  createdAt DateTime @default(now())
+
+  user  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  blog  Blog?  @relation(fields: [blogId], references: [id], onDelete: Cascade)
+  forum Forum? @relation(fields: [forumId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, blogId])
+  @@unique([userId, forumId])
+  @@index([blogId])
+  @@index([forumId])
+  @@index([userId])
+}
