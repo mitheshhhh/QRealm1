@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react"
 import { PhaseSection } from "@/components/phase-section"
 import { quantumPhysicsPhases } from "@/lib/quantum-physics-data"
+import { StructuredByAI } from "@/components/structured-by-ai"
 
 export default function QuantumPhysicsPage() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -83,6 +84,8 @@ export default function QuantumPhysicsPage() {
           </div>
         </div>
       </section>
+
+      <StructuredByAI />
     </div>
   )
 }

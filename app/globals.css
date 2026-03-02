@@ -6,19 +6,24 @@
 @layer base {
   :root {
     /* Dark saffron theme */
-    --background: 0 0% 6.7%;        /* #111111 */
-    --foreground: 36 10% 88%;        /* warm off-white */
-    --card: 0 0% 11%;               /* #1C1C1C */
+    --background: 0 0% 6.7%;
+    /* #111111 */
+    --foreground: 36 10% 88%;
+    /* warm off-white */
+    --card: 0 0% 11%;
+    /* #1C1C1C */
     --card-foreground: 36 10% 88%;
     --popover: 0 0% 11%;
     --popover-foreground: 36 10% 88%;
-    --primary: 27 100% 50%;          /* #FF6A00 */
+    --primary: 27 100% 50%;
+    /* #FF6A00 */
     --primary-foreground: 0 0% 100%;
     --secondary: 0 0% 14%;
     --secondary-foreground: 36 10% 88%;
     --muted: 0 0% 16%;
     --muted-foreground: 36 5% 55%;
-    --accent: 33 100% 53%;           /* #FF8C00 */
+    --accent: 33 100% 53%;
+    /* #FF8C00 */
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
@@ -33,8 +38,10 @@
     --saffron-200: 30 100% 75%;
     --saffron-300: 28 100% 65%;
     --saffron-400: 27 100% 55%;
-    --saffron-500: 27 100% 50%;    /* #FF6A00 */
-    --saffron-600: 28 100% 45%;    /* #E65100 */
+    --saffron-500: 27 100% 50%;
+    /* #FF6A00 */
+    --saffron-600: 28 100% 45%;
+    /* #E65100 */
     --saffron-700: 30 100% 38%;
     --saffron-glow: 27 100% 50% / 0.15;
 
@@ -50,9 +57,11 @@
   * {
     @apply border-border;
   }
+
   html {
     scroll-behavior: smooth;
   }
+
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "cv11", "ss01";
@@ -60,9 +69,13 @@
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
   }
-  button, [role="button"], a {
+
+  button,
+  [role="button"],
+  a {
     cursor: pointer;
   }
+
   ::selection {
     background: hsl(27 100% 50% / 0.3);
     color: hsl(36 10% 95%);
@@ -128,8 +141,15 @@
 
 /* Slow float */
 @keyframes antiGravityFloat {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 /* Aurora saffron glow behind hero */
@@ -138,14 +158,17 @@
     opacity: 0.3;
     transform: translate(-50%, -50%) scale(1) rotate(0deg);
   }
+
   33% {
     opacity: 0.5;
     transform: translate(-48%, -52%) scale(1.05) rotate(2deg);
   }
+
   66% {
     opacity: 0.35;
     transform: translate(-52%, -48%) scale(0.95) rotate(-2deg);
   }
+
   100% {
     opacity: 0.3;
     transform: translate(-50%, -50%) scale(1) rotate(0deg);
@@ -157,10 +180,12 @@
     opacity: 0.2;
     transform: translate(-50%, -50%) scale(1.1) rotate(0deg);
   }
+
   50% {
     opacity: 0.4;
     transform: translate(-53%, -47%) scale(0.9) rotate(3deg);
   }
+
   100% {
     opacity: 0.2;
     transform: translate(-50%, -50%) scale(1.1) rotate(0deg);
@@ -169,14 +194,26 @@
 
 /* Text shimmer */
 @keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
 }
 
 /* Saffron pulse for CTA */
 @keyframes saffronPulse {
-  0%, 100% { box-shadow: 0 0 0 0 hsl(27 100% 50% / 0.4); }
-  50% { box-shadow: 0 0 20px 4px hsl(27 100% 50% / 0.2); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 hsl(27 100% 50% / 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 20px 4px hsl(27 100% 50% / 0.2);
+  }
 }
 
 /* Fade up from below */
@@ -185,6 +222,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -192,64 +230,90 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 /* Gentle rotation for geometric accents */
 @keyframes gentleRotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Saffron underline expand */
 @keyframes underlineExpand {
-  from { width: 0; }
-  to { width: 100%; }
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
 }
 
 @layer utilities {
   .animate-float {
     animation: antiGravityFloat 6s ease-in-out infinite;
   }
+
   .animate-float-slow {
     animation: antiGravityFloat 8s ease-in-out infinite;
   }
+
   .animate-float-slower {
     animation: antiGravityFloat 12s ease-in-out infinite;
   }
+
   .animate-aurora {
     animation: auroraGlow 15s ease-in-out infinite;
   }
+
   .animate-aurora-2 {
     animation: auroraGlow2 20s ease-in-out infinite;
   }
+
   .animate-shimmer {
-    background: linear-gradient(
-      90deg,
-      hsl(var(--foreground)) 0%,
-      hsl(var(--saffron-400)) 40%,
-      hsl(var(--saffron-300)) 50%,
-      hsl(var(--saffron-400)) 60%,
-      hsl(var(--foreground)) 100%
-    );
+    background: linear-gradient(90deg,
+        hsl(var(--foreground)) 0%,
+        hsl(var(--saffron-400)) 40%,
+        hsl(var(--saffron-300)) 50%,
+        hsl(var(--saffron-400)) 60%,
+        hsl(var(--foreground)) 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: shimmer 4s linear infinite;
   }
+
   .animate-fade-up {
     animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
+
   .animate-fade-in {
     animation: fadeIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
+
   .animate-saffron-pulse {
     animation: saffronPulse 3s ease-in-out infinite;
   }
+
   .animate-gentle-rotate {
     animation: gentleRotate 60s linear infinite;
+  }
+
+  .animate-fade-pulse {
+    animation: fadePulse 6s ease-in-out infinite;
   }
 }
 
@@ -268,6 +332,7 @@
       0 4px 16px -4px hsl(var(--saffron-500) / 0.3),
       inset 0 1px 0 0 hsl(0 0% 100% / 0.1);
   }
+
   .saffron-btn:hover {
     transform: translateY(-6px);
     box-shadow:
@@ -280,6 +345,7 @@
     position: relative;
     text-decoration: none;
   }
+
   .saffron-underline::after {
     content: '';
     position: absolute;
@@ -290,6 +356,7 @@
     background: linear-gradient(90deg, hsl(var(--saffron-500)), hsl(var(--saffron-300)));
     transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   }
+
   .saffron-underline:hover::after {
     width: 100%;
   }
@@ -301,6 +368,7 @@
   transform: translateY(30px);
   transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
@@ -311,6 +379,7 @@
   opacity: 0;
   transition: opacity 0.6s ease-in-out;
 }
+
 .tooltip-trigger:hover .tooltip-fade {
   opacity: 1;
 }
@@ -322,8 +391,41 @@
   line-height: 1.8;
 }
 
+/* Fade-pulse for "Structured by AI" marker */
+@keyframes fadePulse {
+
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* KaTeX overrides for dark theme */
+.katex-block {
+  text-align: center;
+  padding: 0.75rem 0;
+}
+
+.katex-block .katex-display {
+  margin: 0;
+}
+
+.katex {
+  color: hsl(27, 80%, 70%);
+  font-size: 1.05em;
+}
+
+.katex-inline {
+  display: inline;
+}
+
 /* ===== REDUCED MOTION ===== */
 @media (prefers-reduced-motion: reduce) {
+
   .animate-float,
   .animate-float-slow,
   .animate-float-slower,
@@ -333,11 +435,13 @@
   .animate-fade-up,
   .animate-fade-in,
   .animate-saffron-pulse,
-  .animate-gentle-rotate {
+  .animate-gentle-rotate,
+  .animate-fade-pulse {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
   }
+
   .reveal {
     opacity: 1 !important;
     transform: none !important;

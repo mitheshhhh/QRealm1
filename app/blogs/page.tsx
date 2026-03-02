@@ -1,7 +1,64 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
+import { WritingPad } from "@/components/writing-pad"
+import { StructuredByAI } from "@/components/structured-by-ai"
+
+/* ===== FIRST WEB BLOG ===== */
+const firstWebBlog = {
+  id: 0,
+  title: "Quantum Mechanics vs Classical Physics: Where the Split Happens",
+  author: "Dr. Beauty Pandey",
+  authorTitle: "Associate Dean, School of Sciences, Woxsen University",
+  abstract:
+    "An exploration of where classical physics reaches its limits and quantum mechanics takes over — the fundamental split that redefined our understanding of nature at its most basic level.",
+  content: [
+    "For over two centuries, classical physics shaped our understanding of the universe. Newton's laws (1687) described motion with elegant precision, while Maxwell's equations (1860s) unified electricity, magnetism, and light. According to this worldview, objects had definite paths, light behaved as a smooth wave, and the future could be predicted with near certainty—as long as you knew all the forces involved.",
+    "But nature, as it often does, had surprises in store.",
+    "",
+    "## Where Cracks Appeared: 1850–1900",
+    "By the late 19th century, classical physics began running into problems it couldn't explain:",
+    "",
+    "Blackbody radiation predicted infinite energy output at high frequencies—an impossible outcome known as the ultraviolet catastrophe.",
+    "The photoelectric effect (1887) showed that light could eject electrons only if its frequency was high enough, regardless of intensity—something classical wave theory couldn't justify.",
+    "",
+    "These inconsistencies hinted that the universe behaved differently on microscopic scales.",
+    "",
+    "## The Quantum Breakthrough: 1900–1930",
+    "The real turning point began in 1900, when Max Planck suggested energy isn't continuous but comes in tiny packets called quanta. Einstein expanded this in 1905 by proposing that light behaves as particles—photons.",
+    "The revolution continued:",
+    "",
+    "Bohr (1913) introduced quantized orbits in atoms.",
+    "de Broglie (1924) proposed that matter has wave‑like properties.",
+    "Schrödinger (1926) formulated the wave equation that governs quantum systems.",
+    "",
+    "This is the heart of the split:",
+    "**Classical physics is deterministic.",
+    "Quantum physics is probabilistic.**",
+    "Instead of definite paths, particles are described by wave functions, which give probabilities—not certainties—of where a particle might be.",
+    "",
+    "## Real‑World Examples of the Split",
+    "",
+    "### 1. Quantum Tunneling in Electronics",
+    "Modern microchips rely on electrons tunneling through barriers—something strictly forbidden by classical physics. Without tunneling, we wouldn't have modern CPUs or flash memory.",
+    "",
+    "### 2. MRI Scans",
+    "MRI machines use quantum spin states of hydrogen atoms. Classical physics has no analog to quantum spin or resonance transitions.",
+    "",
+    "### 3. Lasers",
+    "Lasers operate through stimulated emission, a purely quantum process where one photon triggers identical photons—impossible in classical wave theory.",
+    "",
+    "### 4. Chemistry and Materials",
+    "The shapes of atoms, colors of materials, and the stability of molecules all emerge from quantized energy levels, not classical planetary orbits.",
+  ],
+  reference: {
+    author: "Dr. Beauty Pandey",
+    publication: "Quantum Mechanics vs Classical Physics: Where the Split Happens",
+    journal: "Q realm — First Web Blog",
+    year: 2026,
+  },
+}
 
 const blogPosts = [
   {
@@ -147,8 +204,101 @@ export default function BlogsPage() {
         </div>
       </section>
 
+      {/* First Web Blog — Featured */}
+      <section className="mx-auto max-w-4xl px-4 pb-8">
+        <div className="reveal">
+          <article className="glass-card group rounded-2xl p-7 md:p-9 border-saffron-500/20">
+            {/* Featured badge */}
+            <div className="mb-5 flex items-center gap-3">
+              <span className="inline-flex items-center rounded-lg bg-saffron-500/20 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-saffron-300">
+                Featured · First Web Blog
+              </span>
+              <div className="h-px flex-1 bg-gradient-to-r from-saffron-500/30 to-transparent" />
+            </div>
+
+            {/* Title */}
+            <h2 className="font-serif text-xl font-semibold leading-snug text-foreground transition-colors duration-300 group-hover:text-saffron-300 md:text-2xl">
+              {firstWebBlog.title}
+            </h2>
+
+            {/* Author Attribution */}
+            <div className="mt-3 flex flex-col gap-0.5">
+              <p className="text-sm font-medium text-saffron-400">
+                {firstWebBlog.author}
+              </p>
+              <p className="text-xs text-muted-foreground/70 italic">
+                {firstWebBlog.authorTitle}
+              </p>
+            </div>
+
+            {/* Abstract */}
+            <p className="mt-4 leading-relaxed text-muted-foreground">
+              {firstWebBlog.abstract}
+            </p>
+
+            {/* Full Blog Content */}
+            {firstWebBlog.content && (
+              <div className="mt-6 border-t border-[hsl(0,0%,100%,0.05)] pt-6 space-y-3">
+                {firstWebBlog.content.map((line, i) => {
+                  if (line.startsWith("### ")) {
+                    return (
+                      <h4 key={i} className="font-serif text-lg font-semibold text-foreground/90 mt-5">
+                        {line.replace(/^###\s*/, "")}
+                      </h4>
+                    )
+                  }
+                  if (line.startsWith("## ")) {
+                    return (
+                      <h3 key={i} className="font-serif text-xl font-semibold text-saffron-300 mt-6 first:mt-0">
+                        {line.replace(/^##\s*/, "")}
+                      </h3>
+                    )
+                  }
+                  if (line.startsWith("**") && line.endsWith("**")) {
+                    return (
+                      <p key={i} className="text-sm font-semibold text-foreground/80 mt-3">
+                        {line.replace(/\*\*/g, "")}
+                      </p>
+                    )
+                  }
+                  if (line.startsWith("**")) {
+                    return (
+                      <p key={i} className="text-sm font-semibold text-foreground/80">
+                        {line.replace(/\*\*/g, "")}
+                      </p>
+                    )
+                  }
+                  if (line.trim() === "") return <div key={i} className="h-2" />
+                  return (
+                    <p key={i} className="text-sm leading-relaxed text-muted-foreground">
+                      {line}
+                    </p>
+                  )
+                })}
+              </div>
+            )}
+
+            {/* Scientific Reference */}
+            <div className="mt-5 border-t border-[hsl(0,0%,100%,0.05)] pt-5">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/40">
+                Published by
+              </p>
+              <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground/60">
+                {firstWebBlog.reference.author}
+              </p>
+              <p className="text-xs leading-relaxed text-muted-foreground/50">
+                <em>{firstWebBlog.reference.publication}</em>
+              </p>
+              <p className="text-xs text-muted-foreground/40">
+                {firstWebBlog.reference.journal}, {firstWebBlog.reference.year}
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
       {/* Blog Cards */}
-      <section className="mx-auto max-w-4xl space-y-8 px-4 pb-24">
+      <section className="mx-auto max-w-4xl space-y-8 px-4 pb-12">
         {blogPosts.map((post, i) => (
           <div
             key={post.id}
@@ -226,6 +376,48 @@ export default function BlogsPage() {
           </div>
         ))}
       </section>
+
+      {/* Writing Pad Section */}
+      <section className="mx-auto max-w-4xl px-4 pb-8">
+        <div className="reveal" style={{ transitionDelay: "200ms" }}>
+          <WritingPad />
+        </div>
+      </section>
+
+      {/* Contact Info Section */}
+      <section className="mx-auto max-w-4xl px-4 pb-24">
+        <div className="reveal" style={{ transitionDelay: "300ms" }}>
+          <div className="glass-subtle rounded-xl px-6 py-5">
+            <p className="text-sm font-medium text-foreground/80 mb-4">
+              Please Contact us for Uploading any try of Blogs
+            </p>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="space-y-1">
+                <p className="text-sm text-muted-foreground">
+                  <span className="font-medium text-foreground/70">Name–</span>{" "}
+                  Pranav Bhagavathula
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  <span className="font-medium text-foreground/70">Contact–</span>{" "}
+                  +91 85305 87107
+                </p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-sm text-muted-foreground">
+                  <span className="font-medium text-foreground/70">Name–</span>{" "}
+                  Mithesh Kosanam
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  <span className="font-medium text-foreground/70">Contact–</span>{" "}
+                  +91 6303608055
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <StructuredByAI />
     </div>
   )
 }

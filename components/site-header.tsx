@@ -26,7 +26,7 @@ export function SiteHeader() {
           href="/"
           className="font-serif text-lg font-semibold tracking-wide text-foreground transition-colors duration-300 hover:text-primary"
         >
-          Tattva Vimarsha
+          Q realm
         </Link>
 
         {/* Desktop nav */}

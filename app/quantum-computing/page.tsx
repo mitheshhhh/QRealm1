@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import { StructuredByAI } from "@/components/structured-by-ai"
 
 /* ==== Bloch Sphere SVG (minimal wireframe) ==== */
 function BlochSphere() {
@@ -206,6 +207,8 @@ export default function QuantumComputingPage() {
           </div>
         ))}
       </section>
+
+      <StructuredByAI />
     </div>
   )
 }

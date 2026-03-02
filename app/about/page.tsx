@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import { StructuredByAI } from "@/components/structured-by-ai"
 
 export default function AboutPage() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -38,7 +39,7 @@ export default function AboutPage() {
           </h1>
           <div className="mx-auto mt-4 h-px w-24 bg-gradient-to-r from-transparent via-saffron-500 to-transparent" />
           <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-            The Battle of Interpretations is a scholarly arena where ancient Vedantic
+            Q realm is a scholarly arena where ancient Vedantic
             wisdom meets modern scientific inquiry. Every argument is grounded in
             evidence, every discourse is structured by reason.
           </p>
@@ -150,6 +151,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <StructuredByAI />
     </div>
   )
 }

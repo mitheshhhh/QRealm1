@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useCallback } from "react"
 import Link from "next/link"
-import { ParticleField } from "@/components/particle-field"
+
 import { NeuralNetwork } from "@/components/neural-network"
 
 /* ===== SCROLL REVEAL HOOK ===== */
@@ -90,8 +90,7 @@ export default function HomePage() {
 
   return (
     <div ref={containerRef} className="relative flex flex-col">
-      {/* Particle Background */}
-      <ParticleField />
+
 
       {/* ===== HERO SECTION ===== */}
       <section className="relative flex min-h-[100vh] flex-col items-center justify-center overflow-hidden px-4 pb-24 pt-28">
@@ -132,7 +131,7 @@ export default function HomePage() {
           <div className="reveal" style={{ transitionDelay: "0ms" }}>
             <h1 className="font-serif text-5xl font-bold leading-tight tracking-tight md:text-7xl lg:text-8xl">
               <span className="animate-shimmer">
-                Battle of Interpretations
+                Q realm
               </span>
             </h1>
             <p className="mt-3 font-serif text-xl font-light tracking-widest text-muted-foreground md:text-2xl">
@@ -181,7 +180,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl">
           <div className="reveal mb-16 text-center" style={{ transitionDelay: "0ms" }}>
             <h2 className="font-serif text-3xl font-semibold md:text-4xl lg:text-5xl">
-              Why Battle of Interpretations?
+              Why Q realm?
             </h2>
             <div className="mx-auto mt-4 h-px w-24 bg-gradient-to-r from-transparent via-saffron-500 to-transparent" />
           </div>

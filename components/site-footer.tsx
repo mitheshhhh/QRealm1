@@ -33,7 +33,7 @@ export function SiteFooter() {
         {/* Bottom line */}
         <div className="mt-12 border-t border-[hsl(30,10%,12%)] pt-8 text-center">
           <p className="text-xs text-muted-foreground/60">
-            Battle of Interpretations – Tattva Vimarsha &copy; {new Date().getFullYear()} Battle of Interpretations. All rights reserved.
+            Q realm &copy; {new Date().getFullYear()} Q realm. All rights reserved.
           </p>
         </div>
       </div>
